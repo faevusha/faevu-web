@@ -2,7 +2,10 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <meta name="theme-color" content="#07070a">
+  <meta name="description" content="faevu — official links">
 
   <title>faevu</title>
 
@@ -13,230 +16,574 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-                   "Segoe UI", sans-serif;
-      color: white;
+      background: #07070a;
+      color: #fff;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Segoe UI",
+        sans-serif;
 
-      background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(125, 125, 255, 0.25),
-          transparent 40%
-        ),
-        radial-gradient(
-          circle at 0% 100%,
-          rgba(70, 100, 255, 0.12),
-          transparent 35%
-        ),
-        #08080b;
-
-      display: flex;
-      justify-content: center;
+      overflow-x: hidden;
     }
+
+    /* =========================
+       BACKGROUND
+    ========================= */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: .45;
+      animation: float 9s ease-in-out infinite alternate;
+    }
+
+    .orb.one {
+      width: 330px;
+      height: 330px;
+      background: #5b5bff;
+      top: -170px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .orb.two {
+      width: 260px;
+      height: 260px;
+      background: #7b35ff;
+      right: -150px;
+      top: 35%;
+      animation-delay: -3s;
+    }
+
+    .orb.three {
+      width: 240px;
+      height: 240px;
+      background: #285dff;
+      left: -150px;
+      bottom: 5%;
+      animation-delay: -6s;
+    }
+
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: .035;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    @keyframes float {
+      from {
+        transform: translate(-50%, 0) scale(1);
+      }
+
+      to {
+        transform: translate(-50%, 35px) scale(1.08);
+      }
+    }
+
+    /* =========================
+       CONTAINER
+    ========================= */
 
     .container {
+      position: relative;
+      z-index: 2;
+
       width: 100%;
-      max-width: 520px;
-      padding: 55px 18px 30px;
+      max-width: 540px;
+
+      margin: 0 auto;
+
+      padding:
+        70px
+        18px
+        35px;
     }
 
-    /* PROFILE */
+    /* =========================
+       PROFILE
+    ========================= */
 
     .profile {
       text-align: center;
-      margin-bottom: 30px;
+
+      margin-bottom: 34px;
+
+      animation: appear .8s ease both;
+    }
+
+    .avatar-wrap {
+      position: relative;
+
+      width: 108px;
+      height: 108px;
+
+      margin: 0 auto 19px;
     }
 
     .avatar {
-      width: 92px;
-      height: 92px;
+      width: 108px;
+      height: 108px;
 
-      margin: 0 auto 16px;
-
-      border-radius: 30px;
+      border-radius: 34px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      font-size: 34px;
+      font-size: 35px;
       font-weight: 800;
+
+      letter-spacing: -2px;
 
       background:
         linear-gradient(
           145deg,
-          rgba(255,255,255,0.20),
-          rgba(255,255,255,0.05)
+          rgba(255,255,255,.23),
+          rgba(255,255,255,.055)
         );
 
-      border: 1px solid rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,.17);
 
       box-shadow:
-        0 20px 60px rgba(0,0,0,0.45),
-        inset 0 1px rgba(255,255,255,0.12);
+        0 25px 70px rgba(0,0,0,.45),
+        inset 0 1px rgba(255,255,255,.18);
 
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar::before {
+      content: "";
+
+      position: absolute;
+      width: 80px;
+      height: 80px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.10);
+
+      filter: blur(25px);
+
+      top: -35px;
+      left: -20px;
+    }
+
+    .avatar span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .online {
+      position: absolute;
+
+      width: 20px;
+      height: 20px;
+
+      right: -3px;
+      bottom: -3px;
+
+      border-radius: 50%;
+
+      background: #43e87a;
+
+      border: 4px solid #07070a;
+
+      box-shadow:
+        0 0 18px rgba(67,232,122,.65);
     }
 
     .name {
-      font-size: 30px;
-      font-weight: 750;
-      letter-spacing: -1px;
+      font-size: 32px;
+      line-height: 1;
+
+      font-weight: 800;
+
+      letter-spacing: -1.4px;
     }
 
     .username {
-      margin-top: 5px;
-      color: rgba(255,255,255,0.50);
+      margin-top: 8px;
+
+      color: rgba(255,255,255,.46);
+
       font-size: 15px;
     }
 
-    /* BUTTONS */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      margin-top: 14px;
+
+      padding: 7px 12px;
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,.055);
+
+      border: 1px solid rgba(255,255,255,.09);
+
+      color: rgba(255,255,255,.65);
+
+      font-size: 12px;
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: #43e87a;
+
+      box-shadow: 0 0 10px #43e87a;
+    }
+
+    /* =========================
+       LINKS
+    ========================= */
 
     .links {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+
+      gap: 13px;
     }
 
     .link {
-      width: 100%;
-      min-height: 72px;
+      position: relative;
+
+      min-height: 76px;
 
       display: flex;
       align-items: center;
 
-      padding: 13px 16px;
+      padding: 14px 16px;
 
+      border-radius: 24px;
+
+      color: #fff;
       text-decoration: none;
-      color: white;
-
-      border-radius: 23px;
 
       background:
-        rgba(255,255,255,0.075);
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.105),
+          rgba(255,255,255,.045)
+        );
 
-      border: 1px solid rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,.105);
 
       box-shadow:
-        0 12px 35px rgba(0,0,0,0.18),
-        inset 0 1px rgba(255,255,255,0.05);
+        0 15px 40px rgba(0,0,0,.22),
+        inset 0 1px rgba(255,255,255,.07);
 
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+
+      overflow: hidden;
 
       transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
+        transform .25s ease,
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+
+      animation: slideUp .65s ease both;
+    }
+
+    .link:nth-child(1) {
+      animation-delay: .08s;
+    }
+
+    .link:nth-child(2) {
+      animation-delay: .14s;
+    }
+
+    .link:nth-child(3) {
+      animation-delay: .20s;
+    }
+
+    .link:nth-child(4) {
+      animation-delay: .26s;
+    }
+
+    .link:nth-child(5) {
+      animation-delay: .32s;
+    }
+
+    .link::before {
+      content: "";
+
+      position: absolute;
+
+      width: 130px;
+      height: 130px;
+
+      border-radius: 50%;
+
+      background: rgba(255,255,255,.08);
+
+      filter: blur(45px);
+
+      left: -70px;
+      top: -80px;
+
+      opacity: 0;
+
+      transition: opacity .3s ease;
     }
 
     .link:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
 
       background:
-        rgba(255,255,255,0.11);
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,.14),
+          rgba(255,255,255,.06)
+        );
 
       border-color:
-        rgba(255,255,255,0.18);
+        rgba(255,255,255,.19);
+
+      box-shadow:
+        0 20px 45px rgba(0,0,0,.28),
+        0 0 30px rgba(100,100,255,.08),
+        inset 0 1px rgba(255,255,255,.1);
+    }
+
+    .link:hover::before {
+      opacity: 1;
     }
 
     .link:active {
-      transform: scale(0.98);
+      transform: scale(.975);
     }
 
-    .icon {
-      width: 46px;
-      height: 46px;
+    /* =========================
+       ICON
+    ========================= */
 
-      flex-shrink: 0;
+    .icon {
+      width: 48px;
+      height: 48px;
+
+      flex: 0 0 48px;
+
+      border-radius: 16px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      border-radius: 15px;
-
       font-size: 21px;
 
       background:
-        rgba(255,255,255,0.08);
+        rgba(255,255,255,.075);
 
-      border: 1px solid rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,.075);
+
+      box-shadow:
+        inset 0 1px rgba(255,255,255,.06);
     }
 
     .text {
-      margin-left: 14px;
       flex: 1;
+
+      min-width: 0;
+
+      margin-left: 14px;
     }
 
     .title {
       font-size: 16px;
-      font-weight: 650;
+
+      font-weight: 700;
+
+      letter-spacing: -.15px;
     }
 
     .subtitle {
-      margin-top: 4px;
+      margin-top: 5px;
 
       font-size: 13px;
 
       color:
-        rgba(255,255,255,0.48);
+        rgba(255,255,255,.43);
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
     }
 
     .arrow {
-      margin-left: 8px;
+      width: 34px;
+      height: 34px;
 
-      font-size: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
 
       color:
-        rgba(255,255,255,0.35);
+        rgba(255,255,255,.40);
+
+      background:
+        rgba(255,255,255,.045);
+
+      font-size: 23px;
+
+      transition:
+        transform .25s ease,
+        color .25s ease,
+        background .25s ease;
     }
 
-    /* FOOTER */
+    .link:hover .arrow {
+      transform: translateX(3px);
+
+      color: #fff;
+
+      background:
+        rgba(255,255,255,.09);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     .footer {
-      margin-top: 27px;
+      margin-top: 30px;
 
       text-align: center;
 
+      color:
+        rgba(255,255,255,.24);
+
       font-size: 12px;
 
-      color:
-        rgba(255,255,255,0.25);
+      letter-spacing: .2px;
+
+      animation:
+        appear .8s .45s ease both;
     }
 
-    /* MOBILE */
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 420px) {
 
       .container {
         padding:
-          42px 15px 25px;
+          48px
+          15px
+          28px;
+      }
+
+      .avatar,
+      .avatar-wrap {
+        width: 94px;
+        height: 94px;
       }
 
       .avatar {
-        width: 84px;
-        height: 84px;
-        border-radius: 27px;
+        border-radius: 30px;
       }
 
       .name {
-        font-size: 27px;
+        font-size: 29px;
       }
 
       .link {
-        min-height: 68px;
-        border-radius: 21px;
+        min-height: 70px;
+        border-radius: 22px;
       }
 
+      .icon {
+        width: 45px;
+        height: 45px;
+        flex-basis: 45px;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- BACKGROUND -->
+
+  <div class="background">
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+
+    <div class="noise"></div>
+
+  </div>
+
 
   <main class="container">
 
@@ -244,8 +591,14 @@
 
     <section class="profile">
 
-      <div class="avatar">
-        F
+      <div class="avatar-wrap">
+
+        <div class="avatar">
+          <span>F</span>
+        </div>
+
+        <div class="online"></div>
+
       </div>
 
       <div class="name">
@@ -256,6 +609,11 @@
         @faevu
       </div>
 
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Official links
+      </div>
+
     </section>
 
 
@@ -263,10 +621,14 @@
 
     <section class="links">
 
+
+      <!-- PERSONAL -->
+
       <a
         class="link"
         href="https://t.me/faevu"
         target="_blank"
+        rel="noopener noreferrer"
       >
 
         <div class="icon">
@@ -292,10 +654,13 @@
       </a>
 
 
+      <!-- SHOP BOT -->
+
       <a
         class="link"
         href="https://t.me/Faevu_shop_bot"
         target="_blank"
+        rel="noopener noreferrer"
       >
 
         <div class="icon">
@@ -305,7 +670,7 @@
         <div class="text">
 
           <div class="title">
-            Faevu Shop Bot
+            Faevu Shop
           </div>
 
           <div class="subtitle">
@@ -321,10 +686,13 @@
       </a>
 
 
+      <!-- DATABASE -->
+
       <a
         class="link"
         href="https://t.me/FVScam_Base"
         target="_blank"
+        rel="noopener noreferrer"
       >
 
         <div class="icon">
@@ -334,11 +702,11 @@
         <div class="text">
 
           <div class="title">
-            База
+            FVScam Base
           </div>
 
           <div class="subtitle">
-            FVScam Base
+            База пользователей
           </div>
 
         </div>
@@ -350,10 +718,13 @@
       </a>
 
 
+      <!-- CHANNEL -->
+
       <a
         class="link"
         href="https://t.me/faevu_info"
         target="_blank"
+        rel="noopener noreferrer"
       >
 
         <div class="icon">
@@ -363,7 +734,7 @@
         <div class="text">
 
           <div class="title">
-            Информационный канал
+            Faevu Info
           </div>
 
           <div class="subtitle">
@@ -379,10 +750,13 @@
       </a>
 
 
+      <!-- PROOFS -->
+
       <a
         class="link"
         href="https://t.me/faevusha_proof"
         target="_blank"
+        rel="noopener noreferrer"
       >
 
         <div class="icon">
@@ -407,11 +781,12 @@
 
       </a>
 
+
     </section>
 
 
     <footer class="footer">
-      faevu · official links
+      faevu · 2026
     </footer>
 
   </main>
