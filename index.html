@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>faevu</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                   "Segoe UI", sans-serif;
+      color: white;
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(125, 125, 255, 0.25),
+          transparent 40%
+        ),
+        radial-gradient(
+          circle at 0% 100%,
+          rgba(70, 100, 255, 0.12),
+          transparent 35%
+        ),
+        #08080b;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      padding: 55px 18px 30px;
+    }
+
+    /* PROFILE */
+
+    .profile {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .avatar {
+      width: 92px;
+      height: 92px;
+
+      margin: 0 auto 16px;
+
+      border-radius: 30px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 34px;
+      font-weight: 800;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.20),
+          rgba(255,255,255,0.05)
+        );
+
+      border: 1px solid rgba(255,255,255,0.13);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.45),
+        inset 0 1px rgba(255,255,255,0.12);
+
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+    }
+
+    .name {
+      font-size: 30px;
+      font-weight: 750;
+      letter-spacing: -1px;
+    }
+
+    .username {
+      margin-top: 5px;
+      color: rgba(255,255,255,0.50);
+      font-size: 15px;
+    }
+
+    /* BUTTONS */
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link {
+      width: 100%;
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 13px 16px;
+
+      text-decoration: none;
+      color: white;
+
+      border-radius: 23px;
+
+      background:
+        rgba(255,255,255,0.075);
+
+      border: 1px solid rgba(255,255,255,0.10);
+
+      box-shadow:
+        0 12px 35px rgba(0,0,0,0.18),
+        inset 0 1px rgba(255,255,255,0.05);
+
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .link:hover {
+      transform: translateY(-2px);
+
+      background:
+        rgba(255,255,255,0.11);
+
+      border-color:
+        rgba(255,255,255,0.18);
+    }
+
+    .link:active {
+      transform: scale(0.98);
+    }
+
+    .icon {
+      width: 46px;
+      height: 46px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 15px;
+
+      font-size: 21px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .text {
+      margin-left: 14px;
+      flex: 1;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .subtitle {
+      margin-top: 4px;
+
+      font-size: 13px;
+
+      color:
+        rgba(255,255,255,0.48);
+    }
+
+    .arrow {
+      margin-left: 8px;
+
+      font-size: 25px;
+
+      color:
+        rgba(255,255,255,0.35);
+    }
+
+    /* FOOTER */
+
+    .footer {
+      margin-top: 27px;
+
+      text-align: center;
+
+      font-size: 12px;
+
+      color:
+        rgba(255,255,255,0.25);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 420px) {
+
+      .container {
+        padding:
+          42px 15px 25px;
+      }
+
+      .avatar {
+        width: 84px;
+        height: 84px;
+        border-radius: 27px;
+      }
+
+      .name {
+        font-size: 27px;
+      }
+
+      .link {
+        min-height: 68px;
+        border-radius: 21px;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- PROFILE -->
+
+    <section class="profile">
+
+      <div class="avatar">
+        F
+      </div>
+
+      <div class="name">
+        faevu
+      </div>
+
+      <div class="username">
+        @faevu
+      </div>
+
+    </section>
+
+
+    <!-- LINKS -->
+
+    <section class="links">
+
+      <a
+        class="link"
+        href="https://t.me/faevu"
+        target="_blank"
+      >
+
+        <div class="icon">
+          👤
+        </div>
+
+        <div class="text">
+
+          <div class="title">
+            Личный аккаунт
+          </div>
+
+          <div class="subtitle">
+            @faevu
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ›
+        </div>
+
+      </a>
+
+
+      <a
+        class="link"
+        href="https://t.me/Faevu_shop_bot"
+        target="_blank"
+      >
+
+        <div class="icon">
+          🤖
+        </div>
+
+        <div class="text">
+
+          <div class="title">
+            Faevu Shop Bot
+          </div>
+
+          <div class="subtitle">
+            @Faevu_shop_bot
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ›
+        </div>
+
+      </a>
+
+
+      <a
+        class="link"
+        href="https://t.me/FVScam_Base"
+        target="_blank"
+      >
+
+        <div class="icon">
+          🗄️
+        </div>
+
+        <div class="text">
+
+          <div class="title">
+            База
+          </div>
+
+          <div class="subtitle">
+            FVScam Base
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ›
+        </div>
+
+      </a>
+
+
+      <a
+        class="link"
+        href="https://t.me/faevu_info"
+        target="_blank"
+      >
+
+        <div class="icon">
+          📢
+        </div>
+
+        <div class="text">
+
+          <div class="title">
+            Информационный канал
+          </div>
+
+          <div class="subtitle">
+            @faevu_info
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ›
+        </div>
+
+      </a>
+
+
+      <a
+        class="link"
+        href="https://t.me/faevusha_proof"
+        target="_blank"
+      >
+
+        <div class="icon">
+          ✅
+        </div>
+
+        <div class="text">
+
+          <div class="title">
+            Proofs
+          </div>
+
+          <div class="subtitle">
+            @faevusha_proof
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ›
+        </div>
+
+      </a>
+
+    </section>
+
+
+    <footer class="footer">
+      faevu · official links
+    </footer>
+
+  </main>
+
+</body>
+</html>
